@@ -2,7 +2,6 @@ package amber
 
 import (
     "context"
-    "github.com/CharLemAznable/gokits"
     "net/http"
     "net/url"
 )
@@ -41,7 +40,7 @@ func AuthAmber(handlerFunc http.HandlerFunc) http.HandlerFunc {
         redirectUrl := ConfigInstance.AmberLoginURL +
             "?appID=" + ConfigInstance.AppID +
             "&redirectUrl=" + url.QueryEscape(
-            gokits.PathJoin(ConfigInstance.LocalURL, request.RequestURI))
+            ConfigInstance.LocalURL+request.RequestURI)
         http.Redirect(writer, request, redirectUrl, http.StatusFound)
     }
 }
