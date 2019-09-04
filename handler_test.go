@@ -66,7 +66,7 @@ func TestAuthAmber(t *testing.T) {
         WithLocalURL(testServer.URL),
     )
     redirectUrl := ConfigInstance.AmberLoginURL +
-        "?appId=" + ConfigInstance.AppID +
+        "?appID=" + ConfigInstance.AppID +
         "&redirectUrl=" + url.QueryEscape(
         gokits.PathJoin(ConfigInstance.LocalURL, request.RequestURI)) +
         url.QueryEscape("/")

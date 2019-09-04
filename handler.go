@@ -39,7 +39,7 @@ func AuthAmber(handlerFunc http.HandlerFunc) http.HandlerFunc {
         }
 
         redirectUrl := ConfigInstance.AmberLoginURL +
-            "?appId=" + ConfigInstance.AppID +
+            "?appID=" + ConfigInstance.AppID +
             "&redirectUrl=" + url.QueryEscape(
             gokits.PathJoin(ConfigInstance.LocalURL, request.RequestURI))
         http.Redirect(writer, request, redirectUrl, http.StatusFound)
