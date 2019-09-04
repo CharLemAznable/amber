@@ -22,11 +22,11 @@ func TestReadCookieValue(t *testing.T) {
     }
 
     ConfigInstance = NewConfig(
-        WithAppId("1000"),
+        WithAppID("1000"),
         WithEncryptKey("0b4c09247ec02edc"),
         WithCookieName("cookie-test"),
-        WithAmberLoginUrl("amber-login-url"),
-        WithLocalUrl("local-url"),
+        WithAmberLoginURL("amber-login-url"),
+        WithLocalURL("local-url"),
     )
     cookieValueBuilt := &CookieValue{
         Username:    "john",

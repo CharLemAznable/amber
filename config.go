@@ -1,36 +1,36 @@
 package amber
 
 type Config struct {
-    AppId         string
+    AppID         string
     EncryptKey    string
     CookieName    string
-    AmberLoginUrl string
-    LocalUrl      string
+    AmberLoginURL string
+    LocalURL      string
     ForceLogin    bool
 }
 
 type ConfigOptions struct {
-    AppId         string
+    AppID         string
     EncryptKey    string
     CookieName    string
-    AmberLoginUrl string
-    LocalUrl      string
+    AmberLoginURL string
+    LocalURL      string
     ForceLogin    bool
 }
 
 var defaultConfigOptions = ConfigOptions{
-    AppId:         "",
+    AppID:         "",
     EncryptKey:    "",
     CookieName:    "amber-login-auth",
-    AmberLoginUrl: "",
-    LocalUrl:      "",
+    AmberLoginURL: "",
+    LocalURL:      "",
     ForceLogin:    true,
 }
 
 type ConfigOption func(*ConfigOptions)
 
-func WithAppId(appId string) ConfigOption {
-    return func(o *ConfigOptions) { o.AppId = appId }
+func WithAppID(appID string) ConfigOption {
+    return func(o *ConfigOptions) { o.AppID = appID }
 }
 
 func WithEncryptKey(encryptKey string) ConfigOption {
@@ -41,12 +41,12 @@ func WithCookieName(cookieName string) ConfigOption {
     return func(o *ConfigOptions) { o.CookieName = cookieName }
 }
 
-func WithAmberLoginUrl(amberLoginUrl string) ConfigOption {
-    return func(o *ConfigOptions) { o.AmberLoginUrl = amberLoginUrl }
+func WithAmberLoginURL(amberLoginURL string) ConfigOption {
+    return func(o *ConfigOptions) { o.AmberLoginURL = amberLoginURL }
 }
 
-func WithLocalUrl(localUrl string) ConfigOption {
-    return func(o *ConfigOptions) { o.LocalUrl = localUrl }
+func WithLocalURL(localURL string) ConfigOption {
+    return func(o *ConfigOptions) { o.LocalURL = localURL }
 }
 
 func WithForceLogin(forceLogin bool) ConfigOption {
@@ -59,11 +59,11 @@ func NewConfig(opts ...ConfigOption) *Config {
         o(&options)
     }
     return &Config{
-        AppId:         options.AppId,
+        AppID:         options.AppID,
         EncryptKey:    options.EncryptKey,
         CookieName:    options.CookieName,
-        AmberLoginUrl: options.AmberLoginUrl,
-        LocalUrl:      options.LocalUrl,
+        AmberLoginURL: options.AmberLoginURL,
+        LocalURL:      options.LocalURL,
         ForceLogin:    options.ForceLogin,
     }
 }

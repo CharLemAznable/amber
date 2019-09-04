@@ -7,15 +7,26 @@ import (
     "net/url"
 )
 
+func emptyHandler(_ http.ResponseWriter, _ *http.Request) {}
+
 const CookieValueContextKey = "AmberCookieValue"
 
 func AuthAmber(handlerFunc http.HandlerFunc) http.HandlerFunc {
     return func(writer http.ResponseWriter, request *http.Request) {
-        if nil == ConfigInstance ||
-            !ConfigInstance.ForceLogin || "" == ConfigInstance.AppId ||
-            "" == ConfigInstance.EncryptKey || "" == ConfigInstance.CookieName ||
-            "" == ConfigInstance.AmberLoginUrl || "" == ConfigInstance.LocalUrl {
+        if nil == ConfigInstance {
+            emptyHandler(writer, request)
+            return
+        }
+        if !ConfigInstance.ForceLogin {
             handlerFunc(writer, request)
+            return
+        }
+        if "" == ConfigInstance.AppID ||
+            "" == ConfigInstance.EncryptKey ||
+            "" == ConfigInstance.CookieName ||
+            "" == ConfigInstance.AmberLoginURL ||
+            "" == ConfigInstance.LocalURL {
+            emptyHandler(writer, request)
             return
         }
 
@@ -27,10 +38,10 @@ func AuthAmber(handlerFunc http.HandlerFunc) http.HandlerFunc {
             return
         }
 
-        redirectUrl := ConfigInstance.AmberLoginUrl +
-            "?appId=" + ConfigInstance.AppId +
+        redirectUrl := ConfigInstance.AmberLoginURL +
+            "?appId=" + ConfigInstance.AppID +
             "&redirectUrl=" + url.QueryEscape(
-            gokits.PathJoin(ConfigInstance.LocalUrl, request.RequestURI))
+            gokits.PathJoin(ConfigInstance.LocalURL, request.RequestURI))
         http.Redirect(writer, request, redirectUrl, http.StatusFound)
     }
 }
