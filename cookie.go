@@ -8,9 +8,9 @@ import (
 )
 
 type CookieValue struct {
-    Username    string    `json:"username"`
-    Random      string    `json:"random"`
-    ExpiredTime time.Time `json:"expired-time"`
+    Username    string
+    Random      string
+    ExpiredTime time.Time
 }
 
 func ReadCookieValue(request *http.Request) (*CookieValue, error) {
