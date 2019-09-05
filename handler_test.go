@@ -59,16 +59,16 @@ func TestAuthAmber(t *testing.T) {
     }
 
     ConfigInstance = NewConfig(
-        WithAppID("1000"),
+        WithAppId("1000"),
         WithEncryptKey("0b4c09247ec02edc"),
         WithCookieName("cookie-test"),
-        WithAmberLoginURL("http://amber-login-url"),
-        WithLocalURL(testServer.URL),
+        WithAmberLoginUrl("http://amber-login-url"),
+        WithLocalUrl(testServer.URL),
     )
-    redirectUrl := ConfigInstance.AmberLoginURL +
-        "?appID=" + ConfigInstance.AppID +
+    redirectUrl := ConfigInstance.AmberLoginUrl +
+        "?appId=" + ConfigInstance.AppId +
         "&redirectUrl=" + url.QueryEscape(
-        ConfigInstance.LocalURL+request.RequestURI) +
+        ConfigInstance.LocalUrl+request.RequestURI) +
         url.QueryEscape("/")
     resp, _ = client.Do(request)
     if http.StatusFound != resp.StatusCode {

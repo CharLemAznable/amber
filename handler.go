@@ -20,11 +20,11 @@ func AuthAmber(handlerFunc http.HandlerFunc) http.HandlerFunc {
             handlerFunc(writer, request)
             return
         }
-        if "" == ConfigInstance.AppID ||
+        if "" == ConfigInstance.AppId ||
             "" == ConfigInstance.EncryptKey ||
             "" == ConfigInstance.CookieName ||
-            "" == ConfigInstance.AmberLoginURL ||
-            "" == ConfigInstance.LocalURL {
+            "" == ConfigInstance.AmberLoginUrl ||
+            "" == ConfigInstance.LocalUrl {
             emptyHandler(writer, request)
             return
         }
@@ -37,10 +37,10 @@ func AuthAmber(handlerFunc http.HandlerFunc) http.HandlerFunc {
             return
         }
 
-        redirectUrl := ConfigInstance.AmberLoginURL +
-            "?appID=" + ConfigInstance.AppID +
+        redirectUrl := ConfigInstance.AmberLoginUrl +
+            "?appId=" + ConfigInstance.AppId +
             "&redirectUrl=" + url.QueryEscape(
-            ConfigInstance.LocalURL+request.RequestURI)
+            ConfigInstance.LocalUrl+request.RequestURI)
         http.Redirect(writer, request, redirectUrl, http.StatusFound)
     }
 }
