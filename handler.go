@@ -78,8 +78,8 @@ func ServeCocsHandler(writer http.ResponseWriter, request *http.Request) {
             http.StatusText(http.StatusBadRequest))
         return
     }
-    cookie := http.Cookie{Name: ConfigInstance.CookieName,
-        Value: cookieValue, Path: "/", Expires: time.Unix(expires, 0)}
+    cookie := http.Cookie{Name: ConfigInstance.CookieName, Value: cookieValue,
+        Path: "/", Expires: time.Unix(expires, 0), HttpOnly: true}
     http.SetCookie(writer, &cookie)
     http.Redirect(writer, request, redirect, http.StatusFound)
 }
